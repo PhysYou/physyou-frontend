@@ -55,6 +55,7 @@ function ExerciseCard() {
                     <Box mt={3}>
                         <Typography variant='h6'>Exercise notes here</Typography>
                     </Box>
+                    {/* TODO: The start button should be on bottom right regardless of screen-size */}
                     <Box display='flex' justifyContent='flex-end' mt={25}>
                         <Button className={classes.startBtn}>Start</Button>
                     </Box>
