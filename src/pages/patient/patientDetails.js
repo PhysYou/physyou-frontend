@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Button, Typography, Paper, Box, makeStyles } from '@material-ui/core';
+import { Avatar, Button, Typography, Paper, Box, makeStyles, fade } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 import ExerciseDetails from '../../shared/exerciseDetails';
 
@@ -29,6 +29,17 @@ const useStyles = makeStyles((theme) => ({
         color: '#6ed3c4',
         border: '3px solid #6ed3c4',
         borderRadius: '10px',
+    },
+    startBtn: {
+        textTransform: 'none',
+        width: '160px',
+        backgroundColor: '#6ed3c4',
+        color: '#ffffff',
+        border: '3px solid #6ed3c4',
+        borderRadius: '10px',
+        '&:hover': {
+           backgroundColor: fade('#6ed3c4', 0.7),
+        }
     }
 }));
 
@@ -69,7 +80,7 @@ export default function PatientDetails() {
                         <Typography variant='h6'>Exercise notes here</Typography>
                             </Box>
                         <Box display='flex' justifyContent='flex-end' mt={30}>
-                            <Button className={classes.msgBtn}>Start</Button>
+                            <Button className={classes.startBtn}>Start</Button>
                         </Box>
                     </Box>
                 </Paper>
