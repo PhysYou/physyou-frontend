@@ -6,13 +6,14 @@ import Routes from './pages/routes'
 import theme from './providers/theme';
 import { CssBaseline } from '@material-ui/core';
 import PatientCamera from "./pages/patient/exercise-camera";
+import DoctorHome from "./pages/doctor";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
         <Navbar />
-        <PatientCamera/>
+        <DoctorHome/>
         {/*<Routes />*/}
     </ThemeProvider>
   );
