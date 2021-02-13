@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
@@ -11,6 +11,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import DirectionsIcon from '@material-ui/icons/Directions';
 import Avatar from "@material-ui/core/Avatar";
+import {firestore as db} from '../../firebase';
+import {UserContext} from "../../providers/UserProvider";
 
 const useStyles2 = makeStyles((theme) => ({
     root: {
@@ -50,8 +52,8 @@ function CustomizedInputBase() {
     );
 }
 
-function PatientCard() {
-    const patient = {
+function PatientCard({patient}) {
+    const patientData = {
         name: 'IAN PEREZ',
         startDate: 'since May 2019',
         notes: 'Notes'
@@ -60,15 +62,32 @@ function PatientCard() {
         <Paper style={{marginRight: 20, padding: '30px'}}>
             <Box display='flex' flexDirection='column' justifyContent='center' alignItems='center'>
                 <Avatar style={{height: '80px', width: '80px', marginBottom: '10px'}}/>
-                <Typography variant='h5' color={'primary'} style={{marginBottom: '-5px'}}>{patient.name}</Typography>
-                <Typography variant='body2' color={'secondary'}>{patient.startDate}</Typography>
-                <Typography variant='body1' color={'primary'} style={{marginTop: '5px'}}>{patient.notes}</Typography>
+                <Typography variant='h5' color={'primary'} style={{marginBottom: '-5px'}}>{patient.firstName.toUpperCase()} {patient.lastName.toUpperCase()}</Typography>
+                <Typography variant='body2' color={'secondary'}>{patientData.startDate}</Typography>
+                <Typography variant='body1' color={'primary'} style={{marginTop: '5px'}}>{patientData.notes}</Typography>
             </Box>
         </Paper>
     )
 }
 
 export default function DoctorHome(){
+
+    const [patients, setPatients] = useState([]);
+
+    const user = useContext(UserContext)
+
+    useEffect(() => {
+        if(user) {
+            let usersRef = db.collection('users');
+            var query = usersRef.where("doctor", "==", user.uid);
+            query.onSnapshot((docs) => {
+                let data = []
+                docs.forEach((doc) => {data.push(doc.data())})
+                setPatients(data);
+            })
+        }
+    }, [user])
+
     return (
         <Container>
             <Box display='flex' justifyContent='space-between' marginTop={2}>
@@ -77,7 +96,7 @@ export default function DoctorHome(){
             </Box>
             <Box display='flex' flexDirection='row' marginTop={2}>
                 {
-                    [1, 2, 3, 4, 5, 6].map(item => <PatientCard/>)
+                    patients.map(item => <PatientCard patient={item}/>)
                 }
             </Box>
         </Container>

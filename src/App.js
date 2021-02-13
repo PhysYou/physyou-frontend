@@ -7,14 +7,15 @@ import theme from './providers/theme';
 import { CssBaseline } from '@material-ui/core';
 import PatientCamera from "./pages/patient/exercise-camera";
 import DoctorHome from "./pages/doctor";
+import MyPatientProfile from "./pages/doctor/mypatients";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
         <Navbar />
-        <DoctorHome/>
-        {/*<Routes />*/}
+        {/*<MyPatientProfile/>*/}
+        <Routes />
     </ThemeProvider>
   );
 }
