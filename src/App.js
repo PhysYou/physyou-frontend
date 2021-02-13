@@ -14,8 +14,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
         <Navbar />
-        {/*<MyPatientProfile/>*/}
-        <Routes />
+        <MyPatientProfile/>
+        {/*<Routes />*/}
     </ThemeProvider>
   );
 }

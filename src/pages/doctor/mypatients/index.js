@@ -4,6 +4,7 @@ import Box from "@material-ui/core/Box";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import DatePicker from "react-horizontal-datepicker";
 
 class AddExerciseModal extends Component {
     render() {
@@ -18,7 +19,7 @@ export default function MyPatientProfile(){
         notes: 'Notes on diagnosis, treatment, physical therapy plan etc. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor'
     }
     return (
-        <div>
+        <Box display="flex">
             <Paper style={{height: 'calc(100vh - 64px)', width: '300px'}}>
                 <Box display='flex' alignItems='center' justifyContent='center' flexDirection='column' height={'100%'} p={3}>
                     <Avatar style={{height: '100px', width: '100px', marginBottom: '20px'}}/>
@@ -28,7 +29,11 @@ export default function MyPatientProfile(){
                     <Button size={'large'} variant={'outlined'} color={'secondary'}>Message</Button>
                 </Box>
             </Paper>
-
-        </div>
+            <Box display='flex' flexDirection='column'>
+                <Box width='calc(100vw - 300px)' style={{backgroundColor: '#D5DFEF'}} py={3} px={2}>
+                    <DatePicker getSelectedDay={(date) => console.log(date)}/>
+                </Box>
+            </Box>
+        </Box>
     )
 }
