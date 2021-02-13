@@ -1,10 +1,13 @@
 import React from 'react';
-import PatientHome from './PatientHome/PatientHome';
+import Index from './pages/patient';
+import Navbar from "./shared/navbar";
+import Routes from './pages/routes'
 
 function App() {
   return (
     <>
-      <PatientHome />
+        <Navbar />
+        <Routes />
     </>
   );
 }
