@@ -5,6 +5,7 @@ import Home from './index.js'
 import Login from './login.js'
 import Signup from './signup.js'
 import PatientRoutes from "./patient/routes";
+import DoctorRoutes from './doctor/routes';
 
 export default function Routes() {
     const user = useContext(UserContext);
@@ -14,6 +15,7 @@ export default function Routes() {
             <Route path="/login" render={() => !user ? <Login/> : <Redirect to={`/${user.type}`}/>}/>
             <Route path="/signup" render={() => !user ? <Signup/> : <Redirect to={`/${user.type}`}/>}/>
             <Route path="/patient" component={PatientRoutes}/>
+            <Route path='/doctor' component={DoctorRoutes}/>
         </Switch>
     )
 }
