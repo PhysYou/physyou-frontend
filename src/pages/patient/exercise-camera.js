@@ -38,7 +38,7 @@ export default function PatientCamera(){
         });
         canvasCtx.restore();
     };
-
+    //TODO: Handle no human errors by safe checking arrays
     useEffect(() => {
         const videoElement = document.getElementsByClassName("input_video")[0];
         const canvasElement = document.getElementsByClassName("output_canvas")[0];

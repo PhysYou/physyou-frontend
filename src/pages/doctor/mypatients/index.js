@@ -5,6 +5,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import DatePicker from "react-horizontal-datepicker";
+import SideBar from "../../../shared/sideBar";
 
 class AddExerciseModal extends Component {
     render() {
@@ -20,15 +21,7 @@ export default function MyPatientProfile(){
     }
     return (
         <Box display="flex">
-            <Paper style={{height: 'calc(100vh - 64px)', width: '300px'}}>
-                <Box display='flex' alignItems='center' justifyContent='center' flexDirection='column' height={'100%'} p={3}>
-                    <Avatar style={{height: '100px', width: '100px', marginBottom: '20px'}}/>
-                    <Typography variant='h5' color={'primary'} style={{marginBottom: '-5px'}}>{patient.name}</Typography>
-                    <Typography variant='body2' color={'secondary'}>{patient.startDate}</Typography>
-                    <Typography variant='body1' color={'primary'} style={{marginTop: '10px', textAlign: 'center', marginBottom: '20px'}}>{patient.notes}</Typography>
-                    <Button size={'large'} variant={'outlined'} color={'secondary'}>Message</Button>
-                </Box>
-            </Paper>
+            <SideBar/>
             <Box display='flex' flexDirection='column'>
                 <Box width='calc(100vw - 300px)' style={{backgroundColor: '#D5DFEF'}} py={3} px={2}>
                     <DatePicker getSelectedDay={(date) => console.log(date)}/>
