@@ -79,7 +79,7 @@ export default function PatientDetails() {
                     <Box mt={3}>
                         <Typography variant='h6'>Exercise notes here</Typography>
                             </Box>
-                        <Box display='flex' justifyContent='flex-end' mt={30}>
+                        <Box display='flex' justifyContent='flex-end' mt={25}>
                             <Button className={classes.startBtn}>Start</Button>
                         </Box>
                     </Box>
