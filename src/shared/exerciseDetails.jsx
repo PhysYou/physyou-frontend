@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
         marginTop: '12px',
         display: 'flex',
         textAlign: 'center',
+        boxShadow: '2px 4px 20px rgba(0, 0, 0, 0.25)',
     },
 }));
 
