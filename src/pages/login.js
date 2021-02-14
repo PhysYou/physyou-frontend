@@ -95,7 +95,7 @@ export default function Login() {
               required
               fullWidth
               id='email'
-              label='Email Address'
+              label='email address'
               name='email'
               autoComplete='email'
               autoFocus
@@ -111,7 +111,7 @@ export default function Login() {
               required
               fullWidth
               name='password'
-              label='Password'
+              label='password'
               type='password'
               id='password'
               autoComplete='current-password'
@@ -128,7 +128,7 @@ export default function Login() {
             </Button>
             <Box textAlign='center'>
               <Link href='#' variant='subtitle1' className={classes.whiteText}>
-                Forgot password?
+                forgot password?
               </Link>
             </Box>
             <Box mt={3}>
