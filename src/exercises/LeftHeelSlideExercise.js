@@ -1,4 +1,4 @@
-import {getAngle, PartsEnum} from "./utils";
+import {getAngle, PartsEnum} from "../utils";
 
 export default class LeftHeelSlideExercise {
 
@@ -9,6 +9,11 @@ export default class LeftHeelSlideExercise {
     }
 
     perform_exercise(joints) {
+
+        if(!joints || joints.length == 0){
+            return {currentCount: this.currentCount, feedback: "Please position yourself infront of the camera"};
+        }
+
         const left_hip = joints[PartsEnum.left_hip];
         const left_knee = joints[PartsEnum.left_knee];
         const left_ankle = joints[PartsEnum.left_ankle];

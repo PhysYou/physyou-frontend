@@ -5,16 +5,17 @@ import Navbar from "./shared/navbar";
 import Routes from './pages/routes'
 import theme from './providers/theme';
 import { CssBaseline } from '@material-ui/core';
-import PatientCamera from "./pages/patient/exercise-camera";
+import PatientCamera from "./pages/patient/exercises/exercise-camera";
 import DoctorHome from "./pages/doctor";
 import MyPatientProfile from "./pages/doctor/mypatients";
+import PatientHome from "./pages/patient";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
         <Navbar />
-        {/*<MyPatientProfile/>*/}
+        {/*<PatientHome/>*/}
         <Routes />
     </ThemeProvider>
   );

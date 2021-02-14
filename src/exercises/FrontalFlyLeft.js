@@ -1,4 +1,4 @@
-import {getAngle, PartsEnum} from "./utils";
+import {getAngle, PartsEnum} from "../utils";
 
 export default class FrontalFlyLeft {
 
@@ -9,6 +9,11 @@ export default class FrontalFlyLeft {
     }
 
     perform_exercise(joints) {
+
+        if(!joints || joints.length == 0){
+            return {currentCount: this.currentCount, feedback: "Please position yourself infront of the camera"};
+        }
+
         const left_shoulder = joints[PartsEnum.left_shoulder];
         const left_elbow = joints[PartsEnum.left_elbow];
         const left_hip = joints[PartsEnum.left_hip];

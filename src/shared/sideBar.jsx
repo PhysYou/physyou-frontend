@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
     Avatar,
     Button,
@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import {firestore} from "../firebase";
 import {UserContext} from "../providers/UserProvider";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     sideBar: {
@@ -35,32 +36,44 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function SideBar({person}) {
+function SideBar({personId}) {
     const classes = useStyles();
     const user = useContext(UserContext);
     const [email, setEmail] = useState('');
+    const [person, setPerson] = useState(null);
+    const history = useHistory();
 
     function handleSubmit() {
         let usersRef = firestore.collection('users')
         let query = usersRef.where('email', "==", email).where('type', '==', 'doctor')
-        query.get().then(users => {
+        query.get().then(async (users) => {
             if(!users.empty){
-                let doctor = users.docs[0].data();
+                let doc = users.docs[0];
                 let userDoc = usersRef.doc(user.uid);
-                return userDoc.update({doctor: doctor.id})
+                await userDoc.update({doctor: doc.id})
+                history.go(0);
             } else {
                 alert("Error fetching")
             }
-
         })
     }
+
+    useEffect(async () => {
+        console.log(personId)
+        if(personId) {
+            console.log(personId)
+            const usersRef = firestore.collection('users')
+            const person = await usersRef.doc(personId).get();
+            setPerson(person.data());
+        }
+    }, [personId])
 
     const item = person
         ? <Box textAlign='center'>
             <Box mb={2}>
                 <Avatar className={classes.avatar}></Avatar>
             </Box>
-            <Typography variant='h6'>Dr. Perez, M.D</Typography>
+            <Typography variant='h6'>{person?.type == 'doctor' ? "Dr." : null} {person.firstName} {person.lastName}</Typography>
             <Typography variant='h7' color='secondary'>
                 Since February 2021
             </Typography>
@@ -70,7 +83,7 @@ function SideBar({person}) {
             </Box>
         </Box>
         : <Box display="flex" flexDirection="column">
-            <TextField label="Doctor's Email" variant='filled' placeholder="Type you doctor's email"/>
+            <TextField label="Doctor's Email" variant='filled' placeholder="Type you doctor's email" onChange={(evt) => setEmail(evt.target.value)}/>
             <Button variant='outlined' color='secondary' style={{marginTop: '10px'}} onClick={handleSubmit}>Submit</Button>
         </Box>
 
@@ -78,7 +91,7 @@ function SideBar({person}) {
     return (
         <Paper className={classes.sideBar}>
             {
-                item
+                user ? item : null
             }
         </Paper>
     )

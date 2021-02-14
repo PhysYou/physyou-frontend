@@ -23,3 +23,16 @@
     width: 977.78px;
     margin-right: 20px;
 }
+
+.feedback {
+    position: absolute;
+    font-size: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    color: white;
+    padding: 5px;
+    background-color: rgba(57, 57, 57, 0.5);
+    z-index: 1000;
+}

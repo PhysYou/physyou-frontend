@@ -1,4 +1,4 @@
-import {getAngle, PartsEnum} from "./utils";
+import {getAngle, PartsEnum} from "../utils";
 
 export default class LeftBicepCurlExercise {
 
@@ -9,6 +9,11 @@ export default class LeftBicepCurlExercise {
     }
 
     perform_exercise(joints) {
+
+        if(!joints || joints.length == 0){
+            return {currentCount: this.currentCount, feedback: "Please position yourself infront of the camera"};
+        }
+
         const left_shoulder = joints[PartsEnum.left_shoulder];
         const left_elbow = joints[PartsEnum.left_elbow];
         const left_wrist = joints[PartsEnum.left_wrist];
@@ -26,14 +31,14 @@ export default class LeftBicepCurlExercise {
                     this.currentCount += 1
                     return {currentCount: this.currentCount, feedback: "Good Job"}
                 } else {
-                    return {currentCount: this.currentCount, feedback: "keep moving your hands outwards"}
+                    return {currentCount: this.currentCount, feedback: "keep moving your hands inwards"}
                 }
             case 1:
                 if(angle < 90){
                     this.currentStep = 0
                     return {currentCount: this.currentCount, feedback: "Good Job"}
                 } else {
-                    return {currentCount: this.currentCount, feedback: "keep moving your hands inwards"}
+                    return {currentCount: this.currentCount, feedback: "keep moving your hands outwards"}
                 }
         }
     }

@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 import ExerciseDetails from './exerciseDetails';
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     exerciseCard: {
@@ -30,8 +31,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ExerciseCard() {
+function ExerciseCard({exercise, exerciseId}) {
     const classes = useStyles();
+    const history = useHistory();
 
     const handleClose = () => {
         console.log('Close');
@@ -42,7 +44,7 @@ function ExerciseCard() {
             <Paper className={classes.exerciseCard}>
                 <Box p={6}>
                     <Box display='flex' justifyContent='space-between'>
-                        <Typography variant='h3'>Exercise Name</Typography>
+                        <Typography variant='h4'>{exercise?.exerciseName}</Typography>
                         <ClearIcon
                             onClick={handleClose}
                             fontSize='large'
@@ -50,14 +52,14 @@ function ExerciseCard() {
                         />
                     </Box>
                     <Box display='flex' justifyContent='center'>
-                        <ExerciseDetails />
+                        <ExerciseDetails exercise={exercise}/>
                     </Box>
                     <Box mt={3}>
-                        <Typography variant='h6'>Exercise notes here</Typography>
+                        <Typography variant='h6'>{exercise?.description}</Typography>
                     </Box>
                     {/* TODO: The start button should be on bottom right regardless of screen-size */}
                     <Box display='flex' justifyContent='flex-end' mt={25}>
-                        <Button className={classes.startBtn}>Start</Button>
+                        <Button className={classes.startBtn} onClick={() => history.push(`/patient/exercises/${exerciseId}/perform`)}>Start</Button>
                     </Box>
                 </Box>
             </Paper>

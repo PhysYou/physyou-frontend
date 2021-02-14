@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   Button,
   Typography,
@@ -13,6 +13,8 @@ import {
   InputLabel,
 } from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
+import {useHistory} from "react-router-dom";
+import {firestore} from "../firebase";
 
 const useStyles = makeStyles((theme) => ({
   exerciseCard: {
@@ -37,12 +39,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ExerciseForm() {
+function ExerciseForm({patientId, handleClose, selectedDate}) {
   const classes = useStyles();
+  const history = useHistory();
 
-  const handleClose = () => {
-    console.log('Close');
-  };
+  const [exercise, setExercise] = useState('');
+  const [reps, setReps] = useState(10);
+  const [duration, setDuration] = useState(5);
+  const [intensity, setIntensity] = useState('Medium');
+  const [description, setDescription] = useState('');
+
+  const handleSubmit = async () => {
+    let exerciseRef = firestore.collection('exercises');
+    await exerciseRef.add({
+      exerciseName: exercise,
+      reps,
+      duration,
+      intensity,
+      description,
+      patient: patientId,
+      completed: false,
+      date: selectedDate.toLocaleDateString()
+    })
+    setExercise('');
+    setReps(10);
+    setDuration(5);
+    setIntensity('Medium');
+    setDescription('');
+    handleClose();
+  }
 
   return (
     <div>
@@ -57,15 +82,23 @@ function ExerciseForm() {
             />
           </Box>
           <Box mt={3}>
-            <TextField
-              id='outlined'
-              label='Exercise Name'
-              variant='outlined'
-              fullWidth
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
+            <FormControl variant='outlined' fullWidth>
+              <InputLabel id='name-select'>Exercise Name</InputLabel>
+              <Select
+                  labelId='name-select'
+                  id='name-select'
+                  label='Exercise Name'
+                  onChange={(evt) => setExercise(evt.target.value)}
+              >
+                <MenuItem value='Frontal Fly Left'>Frontal Fly Left</MenuItem>
+                <MenuItem value='Frontal Fly Right'>Frontal Fly Right</MenuItem>
+                <MenuItem value='Left Bicep Curl'>Left Bicep Curl</MenuItem>
+                <MenuItem value='Right Bicep Curl'>Right Bicep Curl</MenuItem>
+                <MenuItem value='Right Heel Slide'>Right Heel Slide</MenuItem>
+                <MenuItem value='Left Heel Slide'>Left Heel Slide</MenuItem>
+                <MenuItem value='Standing Right Knee'>Standing Right Knee</MenuItem>
+              </Select>
+            </FormControl>
           </Box>
           <Box mt={3} display='flex' justifyContent='space-between'>
             <TextField
@@ -76,6 +109,8 @@ function ExerciseForm() {
               InputLabelProps={{
                 shrink: true,
               }}
+              value={reps}
+              onChange={(evt) => setReps(evt.target.value)}
             />
             <TextField
               id='outlined-number'
@@ -85,6 +120,8 @@ function ExerciseForm() {
               InputLabelProps={{
                 shrink: true,
               }}
+              value={duration}
+              onChange={(evt) => setDuration(evt.target.value)}
             />
             <FormControl variant='outlined' className={classes.formControl}>
               <InputLabel id='intensity-select'>Intensity</InputLabel>
@@ -92,6 +129,8 @@ function ExerciseForm() {
                 labelId='intensity-select'
                 id='intensity-select'
                 label='Intensity'
+                value={intensity}
+                onChange={(evt) => setIntensity(evt.target.value)}
               >
                 <MenuItem value='High'>High</MenuItem>
                 <MenuItem value='Medium'>Medium</MenuItem>
@@ -110,22 +149,11 @@ function ExerciseForm() {
               variant='outlined'
               fullWidth
               rows={5}
+              onChange={(evt) => setDescription(evt.target.value)}
             />
-          </Box>
-          <Box mt={3} display='flex' justifyContent='flex-end'>
-            <input
-              style={{ display: 'none' }}
-              id='contained-button-file'
-              type='file'
-            />
-            <label htmlFor='contained-button-file'>
-              <Button variant='contained' color='primary' component='span'>
-                Upload Video
-              </Button>
-            </label>
           </Box>
           <Box display='flex' justifyContent='flex-end' mt={3}>
-            <Button className={classes.startBtn}>Add Exercise</Button>
+            <Button className={classes.startBtn} onClick={handleSubmit}>Add Exercise</Button>
           </Box>
         </Box>
       </Paper>

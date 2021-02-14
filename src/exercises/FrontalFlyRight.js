@@ -1,4 +1,4 @@
-import {getAngle, PartsEnum} from "./utils";
+import {getAngle, PartsEnum} from "../utils";
 
 
 
@@ -11,11 +11,16 @@ export default class FrontalFlyRight {
     }
 
     perform_exercise(joints) {
+
+        if(!joints || joints.length == 0){
+            return {currentCount: this.currentCount, feedback: "Please position yourself infront of the camera"};
+        }
+
         const right_shoulder = joints[PartsEnum.right_shoulder];
         const right_elbow = joints[PartsEnum.right_elbow];
         const right_hip = joints[PartsEnum.right_hip];
 
-        const angle = getAngle(right_shoulder, right_hip, right_elbow )
+        const angle = -1 * getAngle(right_hip, right_shoulder, right_elbow )
 
         if([right_shoulder, right_elbow, right_hip].filter(item => item.visibility < 0.5).length !== 0){
             return {currentCount: this.currentCount, feedback: "make sure limbs are visible"};
@@ -23,19 +28,19 @@ export default class FrontalFlyRight {
         console.log(angle)
         switch(this.currentStep){
             case 0:
-                if(angle > 20){
+                if(angle > 60){
                     this.currentStep = 1
                     this.currentCount += 1
                     return {currentCount: this.currentCount, feedback: "Good Job"}
                 } else {
-                    return {currentCount: this.currentCount, feedback: "keep moving your arm inwards"}
+                    return {currentCount: this.currentCount, feedback: "keep moving your arm outwards"}
                 }
             case 1:
-                if(angle < 15){
+                if(angle < 20){
                     this.currentStep = 0
                     return {currentCount: this.currentCount, feedback: "Good Job"}
                 } else {
-                    return {currentCount: this.currentCount, feedback: "keep moving your arm outwards"}
+                    return {currentCount: this.currentCount, feedback: "keep moving your arm inwards"}
 
                 }
         }

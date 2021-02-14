@@ -1,4 +1,4 @@
-import {getAngle, PartsEnum} from "./utils";
+import {getAngle, PartsEnum} from "../utils";
 
 export default class StandUpRightKnee {
 
@@ -9,18 +9,23 @@ export default class StandUpRightKnee {
     }
 
     perform_exercise(joints) {
+
+        if(!joints || joints.length == 0){
+            return {currentCount: this.currentCount, feedback: "Please position yourself infront of the camera"};
+        }
+
         const right_hip = joints[PartsEnum.right_hip];
         const right_knee = joints[PartsEnum.right_knee];
         const right_ankle = joints[PartsEnum.right_ankle];
 
         const angle = getAngle(right_hip, right_knee, right_ankle)
-        
+
         if([right_hip, right_knee, right_ankle].filter(item => item.visibility < 0.2).length !== 0){
             return this.currentCount;
         }
-        
+
         console.log(angle)
-        
+
         switch(this.currentStep){
             case 0:
                 if(angle < 80){

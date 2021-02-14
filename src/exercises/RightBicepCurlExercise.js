@@ -1,4 +1,4 @@
-import {getAngle} from "./utils";
+import {getAngle} from "../utils";
 
 const PartsEnum = {right_shoulder: 12, right_elbow: 14, right_wrist: 16}
 
@@ -11,6 +11,11 @@ export default class RightBicepCurlExercise {
     }
 
     perform_exercise(joints) {
+
+        if(!joints || joints.length == 0){
+            return {currentCount: this.currentCount, feedback: "Please position yourself infront of the camera"};
+        }
+
         const right_shoulder = joints[PartsEnum.right_shoulder];
         const right_elbow = joints[PartsEnum.right_elbow];
         const right_wrist = joints[PartsEnum.right_wrist];

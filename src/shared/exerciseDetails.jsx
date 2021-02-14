@@ -29,7 +29,7 @@ const lightText = {
 
 
 
-function ExerciseDetails() {
+function ExerciseDetails({exercise}) {
     const classes = useStyles();
 
     return (
@@ -37,12 +37,12 @@ function ExerciseDetails() {
             <ListItem className={classes.listItem} key='1'>
                 <Box display='flex'>
                     <FitnessCenterIcon style={{ fill: "#2DD6C2", marginRight: '16px' }} />
-                    <ListItemText primaryTypographyProps={{ style: lightText }}>COMPLETED</ListItemText>
+                    <ListItemText primaryTypographyProps={{ style: lightText }}>{exercise?.completed ? 'COMPLETED' : 'INCOMPLETE'}</ListItemText>
                 </Box>
-                <ListItemText primaryTypographyProps={{ style: lightText }}>90% ACCURACY</ListItemText>
-                <ListItemText primaryTypographyProps={{ style: darkText }}>24 reps</ListItemText>
-                <ListItemText primaryTypographyProps={{ style: darkText }}>10 minutes</ListItemText>
-                <ListItemText primaryTypographyProps={{ style: darkText }}>Intesity: High</ListItemText>
+                {exercise?.completed ? <ListItemText primaryTypographyProps={{style: lightText}}>90% ACCURACY</ListItemText> : null}
+                <ListItemText primaryTypographyProps={{ style: darkText }}>{exercise?.reps} reps</ListItemText>
+                <ListItemText primaryTypographyProps={{ style: darkText }}>{exercise?.duration} minutes</ListItemText>
+                <ListItemText primaryTypographyProps={{ style: darkText }}>Intesity: {exercise?.intensity}</ListItemText>
             </ListItem>
         </List>
     );
