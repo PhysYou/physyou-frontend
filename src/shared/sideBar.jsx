@@ -74,7 +74,7 @@ function SideBar({personId}) {
                 <Avatar className={classes.avatar}></Avatar>
             </Box>
             <Typography variant='h6'>{person?.type == 'doctor' ? "Dr." : null} {person.firstName} {person.lastName}</Typography>
-            <Typography variant='h7' color='secondary'>
+            <Typography color='secondary'>
                 Since February 2021
             </Typography>
             <Typography variant='body2'>Notes on diagnosis, plan</Typography>
