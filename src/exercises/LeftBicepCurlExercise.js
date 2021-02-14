@@ -31,14 +31,14 @@ export default class LeftBicepCurlExercise {
                     this.currentCount += 1
                     return {currentCount: this.currentCount, feedback: "Good Job"}
                 } else {
-                    return {currentCount: this.currentCount, feedback: "keep moving your hands inwards"}
+                    return {currentCount: this.currentCount, feedback: "keep moving your hands outwards"}
                 }
             case 1:
                 if(angle < 90){
                     this.currentStep = 0
                     return {currentCount: this.currentCount, feedback: "Good Job"}
                 } else {
-                    return {currentCount: this.currentCount, feedback: "keep moving your hands outwards"}
+                    return {currentCount: this.currentCount, feedback: "keep moving your hands inwards"}
                 }
         }
     }

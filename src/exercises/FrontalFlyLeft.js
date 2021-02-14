@@ -18,7 +18,7 @@ export default class FrontalFlyLeft {
         const left_elbow = joints[PartsEnum.left_elbow];
         const left_hip = joints[PartsEnum.left_hip];
 
-        const angle = Math.abs(getAngle(left_shoulder, left_hip, left_elbow))
+        const angle = getAngle(left_hip, left_shoulder, left_elbow)
 
         if([left_shoulder, left_elbow, left_hip].filter(item => item.visibility < 0.5).length !== 0){
             return {currentCount: this.currentCount, feedback: "make sure limbs are visible"};
@@ -26,19 +26,19 @@ export default class FrontalFlyLeft {
         console.log(angle)
         switch(this.currentStep){
             case 0:
-                if(angle > 20){
+                if(angle > 60){
                     this.currentStep = 1
                     this.currentCount += 1
                     return {currentCount: this.currentCount, feedback: "Good Job"}
                 } else {
-                    return {currentCount: this.currentCount, feedback: "keep moving your arm inwards"}
+                    return {currentCount: this.currentCount, feedback: "keep moving your arm outwards"}
                 }
             case 1:
-                if(angle < 15){
+                if(angle < 20){
                     this.currentStep = 0
                     return {currentCount: this.currentCount, feedback: "Good Job"}
                 } else {
-                    return {currentCount: this.currentCount, feedback: "keep moving your arm outwards"}
+                    return {currentCount: this.currentCount, feedback: "keep moving your arm inwards"}
 
                 }
         }
