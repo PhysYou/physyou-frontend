@@ -10,9 +10,10 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, MuiThemeProvider, createMuiTheme, useTheme } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {auth} from "../firebase";
+import {auth} from "../firebase"; 
+
 
 function Copyright() {
     return (
@@ -26,6 +27,18 @@ function Copyright() {
         </Typography>
     );
 }
+
+const background = createMuiTheme({
+    palette: {
+      background: {
+        // default: 'linear-gradient(to top, #3553ae, #6394dd)',
+        // default: '#3553ae',
+        main: '#3553ae',
+        mainGradient: "linear-gradient(to right, #3553ae, #6394dd)",
+      }
+    }
+  });
+  
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -52,6 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
     const classes = useStyles();
+    const theme = useTheme();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -63,7 +77,9 @@ export default function Login() {
     }
 
     return (
-        <Container component="main" maxWidth="xs">
+        <MuiThemeProvider theme={background}>
+           {/* <style>{'body { background: `linear-gradient(to right, #3553ae, #6394dd);`' }</style> */}
+        <Container component="main" maxWidth="xs" style={{ background: theme.palette.background.mainGradient }}>
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -130,5 +146,6 @@ export default function Login() {
                 <Copyright />
             </Box>
         </Container>
+    </MuiThemeProvider>
     );
 }
