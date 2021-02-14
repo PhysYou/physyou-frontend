@@ -51,9 +51,9 @@ const useStyles = makeStyles((theme) => ({
 function Copyright() {
   return (
     <Typography variant='body2' style={{ color: '#f8f8f8' }} align='center'>
-      {'Copyright © '}
+      {'copyright © '}
       <Link color='inherit' href='#'>
-        PhysYou
+        physyou
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -82,7 +82,7 @@ export default function Login() {
           <Logo style={{ width: 600 }} />
           </Box>
           <Typography component='h1' variant='h5' style={{ color: '#f8f8f8'}}>
-            Log in
+            log in
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit}>
             <TextField
@@ -139,7 +139,7 @@ export default function Login() {
                 variant='contained'
                 className={classes.registerBtn}
                 >
-                Sign up
+                sign up
                 </Button>
             </Box>
           </form>
