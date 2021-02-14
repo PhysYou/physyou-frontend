@@ -91,6 +91,9 @@ export default function Login() {
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit}>
             <TextField
+              InputLabelProps={{
+                style: { color: '#6394dd' },
+              }}
               className={classes.input}
               variant='outlined'
               margin='normal'
@@ -104,6 +107,9 @@ export default function Login() {
               onChange={(evt) => setEmail(evt.target.value)}
             />
             <TextField
+              InputLabelProps={{
+                style: { color: '#6394dd' },
+              }}
               className={classes.input}
               variant='outlined'
               margin='normal'
