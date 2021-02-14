@@ -113,7 +113,6 @@ export default function PatientCamera({match}){
     return (
         <Container>
             <Typography variant={'h4'} color={'primary'} style={{marginTop: '20px'}}>{exercise?.exerciseName}</Typography>
-
             <Box display='flex'>
                 <div className="container">
                     <div className="feedback">{feedback}</div>
@@ -126,7 +125,7 @@ export default function PatientCamera({match}){
                 </div>
                 <Box display='flex' flexDirection='column'>
                     <ProgressBar current={Math.min(exercise?.reps ?? 0, reps)} max={exercise?.reps ?? 0}/>
-                    <Button variant={'contained'} color={'secondary'} style={{marginBottom: '5px'}}>exit</Button>
+                    <Button variant={'contained'} color={'secondary'} style={{marginBottom: '5px'}} onClick={() => history.goBack()}>exit</Button>
                     <Button variant={'outlined'} color={'secondary'}>pause</Button>
                 </Box>
             </Box>
