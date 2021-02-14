@@ -6,6 +6,11 @@ import "./exercise-camera.css";
 import Box from "@material-ui/core/Box";
 import ProgressBar from "../../../shared/progressBar";
 import Button from "@material-ui/core/Button";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import FrontalFlyRight from "../../../exercises/FrontalFlyRight";
 import FrontalFlyLeft from "../../../exercises/FrontalFlyLeft";
 import LeftBicepCurlExercise from "../../../exercises/LeftBicepCurlExercise";
@@ -44,15 +49,21 @@ export default function PatientCamera({match}){
     const [reps, setReps] = useState(0);
     const [feedback, setFeedback] = useState('')
 
-    useEffect(async () => {
-        if(exercise){
-            if(reps == exercise?.reps){
-                let exerciseRef = firestore.collection('exercises').doc(exerciseId);
-                await exerciseRef.update({completed: true});
-                history.push('/patient')
-            }
-        }
-    }, [exercise, reps])
+    const handleClose = async () => {
+        let exerciseRef = firestore.collection('exercises').doc(exerciseId);
+        await exerciseRef.update({completed: true});
+        history.push('/patient')
+    }
+
+    // useEffect(async () => {
+    //     if(exercise){
+    //         if(reps == exercise?.reps){
+    //             let exerciseRef = firestore.collection('exercises').doc(exerciseId);
+    //             await exerciseRef.update({completed: true});
+    //             history.push('/patient')
+    //         }
+    //     }
+    // }, [exercise, reps])
 
     const onResults = (results, canvasCtx, canvasElement) => {
         canvasCtx.save();
@@ -112,6 +123,24 @@ export default function PatientCamera({match}){
     }, [exerciseObj]);
     return (
         <Container>
+            <Dialog
+                open={reps >= exercise?.reps}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">{"Exercise Completed Succesfully"}</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                         Thank you for succesfully completing the exercise. You will return your home page after you close this dialog.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary" autoFocus>
+                        Exit
+                    </Button>
+                </DialogActions>
+            </Dialog>
             <Typography variant={'h4'} color={'primary'} style={{marginTop: '20px'}}>{exercise?.exerciseName}</Typography>
             <Box display='flex'>
                 <div className="container">
