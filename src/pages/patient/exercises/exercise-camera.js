@@ -48,6 +48,7 @@ export default function PatientCamera({match}){
     }, [exercise])
     const [reps, setReps] = useState(0);
     const [feedback, setFeedback] = useState('')
+    const [paused, setPaused] = useState(false);
 
     const handleClose = async () => {
         let exerciseRef = firestore.collection('exercises').doc(exerciseId);
@@ -155,7 +156,7 @@ export default function PatientCamera({match}){
                 <Box display='flex' flexDirection='column'>
                     <ProgressBar current={Math.min(exercise?.reps ?? 0, reps)} max={exercise?.reps ?? 0}/>
                     <Button variant={'contained'} color={'secondary'} style={{marginBottom: '5px'}} onClick={() => history.goBack()}>exit</Button>
-                    <Button variant={'outlined'} color={'secondary'}>pause</Button>
+                    <Button variant={'outlined'} color={'secondary'} onClick={() => setPaused(!paused)}>{paused ? 'play' : 'pause'}</Button>
                 </Box>
             </Box>
         </Container>
