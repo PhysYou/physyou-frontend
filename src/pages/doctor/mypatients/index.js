@@ -42,11 +42,11 @@ export default function MyPatientProfile({match}){
                 <Box width='calc(100vw - 300px)' style={{backgroundColor: '#D5DFEF'}} py={3} px={2}>
                     <DatePicker getSelectedDay={(date) => setSelectedDate(new Date(date))}/>
                 </Box>
-                <Box p={1}>
-                    <Fab color="primary" aria-label="add" style={{alignSelf: 'flex-end', display: showAddExercise ? "None" : ''}} onClick={() => setShowAddExercise(true)}>
+                <Box p={1} display={'flex'} flexDirection='column'>
+                    <Fab color="primary" aria-label="add" style={{alignSelf: 'flex-end', display: showAddExercise ? "None" : '', marginRight: '30px'}} onClick={() => setShowAddExercise(true)}>
                         <Add/>
                     </Fab>
-                    <Box display='flex' justifyContent>
+                    <Box display='flex' justifyContent='center'>
                         {
                             showAddExercise ? <ExerciseForm patientId={patientId} handleClose={() => setShowAddExercise(false)} selectedDate={selectedDate}/> : <ExerciseList exercises={exercises}/>
                         }
