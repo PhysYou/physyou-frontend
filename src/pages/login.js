@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     submit: {
         margin: theme.spacing(3, 0, 2),
     },
+    input: {
+        backgroundColor: '#F8F8F8',
+    }
 }));
 
 export default function Login() {
@@ -71,6 +74,7 @@ export default function Login() {
                 </Typography>
                 <form className={classes.form} onSubmit={handleSubmit}>
                     <TextField
+                        className={classes.input}
                         variant="outlined"
                         margin="normal"
                         required
@@ -83,6 +87,7 @@ export default function Login() {
                         onChange={(evt) => setEmail(evt.target.value)}
                     />
                     <TextField
+                        className={classes.input}
                         variant="outlined"
                         margin="normal"
                         required
@@ -94,31 +99,31 @@ export default function Login() {
                         autoComplete="current-password"
                         onChange={(evt) => setPassword(evt.target.value)}
                     />
-                    <FormControlLabel
-                        control={<Checkbox value="remember" color="primary" />}
-                        label="Remember me"
-                    />
                     <Button
                         type="submit"
                         fullWidth
                         variant="contained"
-                        color="primary"
+                        style={{ background: '#6ed3c4', color: '#f8f8f8' }}
                         className={classes.submit}
                     >
                         Sign In
                     </Button>
-                    <Grid container>
-                        <Grid item xs>
-                            <Link href="#" variant="body2">
+                    <Box textAlign='center'>
+                            <Link href="#" variant="subtitle1" color='textSecondary'>
                                 Forgot password?
                             </Link>
-                        </Grid>
-                        <Grid item>
-                            <Link href="/signup" variant="body2">
-                                {"Don't have an account? Sign Up"}
-                            </Link>
-                        </Grid>
-                    </Grid>
+                            </Box>
+                     
+                            <Button
+                            href="/signup"
+                        type="submit"
+                        fullWidth
+                        variant="contained"
+                        style={{ background: '#6ed3c4', color: '#f8f8f8' }}
+                        className={classes.submit}
+                    >
+                        Sign up
+                    </Button>
                 </form>
             </div>
             <Box mt={8}>
