@@ -48,7 +48,7 @@ export default function MyPatientProfile({match}){
                     </Fab>
                     <Box display='flex' justifyContent='center'>
                         {
-                            showAddExercise ? <ExerciseForm patientId={patientId} handleClose={() => setShowAddExercise(false)} selectedDate={selectedDate}/> : <ExerciseList exercises={exercises}/>
+                            showAddExercise ? <ExerciseForm patientId={patientId} handleClose={() => setShowAddExercise(false)} selectedDate={selectedDate}/> : <ExerciseList exercises={exercises} handleClick={() => console.log("clicked")}/>
                         }
                     </Box>
                 </Box>
