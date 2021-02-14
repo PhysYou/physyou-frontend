@@ -48,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   input: {
-    backgroundColor: '#F8F8F8',
+    backgroundColor: '#ffffff',
+    borderRadius: 2,
   },
   whiteText: {
     color: '#f8f8f8',
@@ -108,7 +109,7 @@ export default function Signup() {
                   }}
                   autoComplete='fname'
                   name='firstName'
-                  variant='outlined'
+                  variant='filled'
                   required
                   fullWidth
                   id='firstName'
@@ -123,7 +124,7 @@ export default function Signup() {
                   InputLabelProps={{
                     style: { color: '#6394dd' },
                   }}
-                  variant='outlined'
+                  variant='filled'
                   required
                   fullWidth
                   id='lastName'
@@ -162,10 +163,10 @@ export default function Signup() {
               <Grid item xs={12}>
                 <TextField
                   className={classes.input}
-                  InputLabelProps={{
+                   InputLabelProps={{
                     style: { color: '#6394dd' },
                   }}
-                  variant='outlined'
+                  variant='filled'
                   required
                   fullWidth
                   id='email'
@@ -178,10 +179,10 @@ export default function Signup() {
               <Grid item xs={12}>
                 <TextField
                   className={classes.input}
-                  InputLabelProps={{
+                   InputLabelProps={{
                     style: { color: '#6394dd' },
                   }}
-                  variant='outlined'
+                  variant='filled'
                   required
                   fullWidth
                   name='password'

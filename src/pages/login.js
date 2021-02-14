@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   input: {
-    backgroundColor: '#F8F8F8',
+    backgroundColor: '#ffffff',
+    borderRadius: 2,
   },
   whiteText: {
     color: '#f8f8f8',
@@ -86,11 +87,11 @@ export default function Login() {
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit}>
             <TextField
+              className={classes.input}
               InputLabelProps={{
                 style: { color: '#6394dd' },
               }}
-              className={classes.input}
-              variant='outlined'
+              variant='filled'
               margin='normal'
               required
               fullWidth
@@ -102,11 +103,11 @@ export default function Login() {
               onChange={(evt) => setEmail(evt.target.value)}
             />
             <TextField
+              className={classes.input}
               InputLabelProps={{
                 style: { color: '#6394dd' },
               }}
-              className={classes.input}
-              variant='outlined'
+              variant='filled'
               margin='normal'
               required
               fullWidth
