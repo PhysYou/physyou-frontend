@@ -42,7 +42,7 @@ function ExerciseDetails({exercise}) {
                 {exercise?.completed ? <ListItemText primaryTypographyProps={{style: lightText}}>90% ACCURACY</ListItemText> : null}
                 <ListItemText primaryTypographyProps={{ style: darkText }}>{exercise?.reps} reps</ListItemText>
                 <ListItemText primaryTypographyProps={{ style: darkText }}>{exercise?.duration} minutes</ListItemText>
-                <ListItemText primaryTypographyProps={{ style: darkText }}>Intesity: {exercise?.intensity}</ListItemText>
+                <ListItemText primaryTypographyProps={{ style: darkText }}>Intensity: {exercise?.intensity}</ListItemText>
             </ListItem>
         </List>
     );
