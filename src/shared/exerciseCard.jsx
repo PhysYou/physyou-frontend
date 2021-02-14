@@ -36,7 +36,7 @@ function ExerciseCard({exercise, exerciseId}) {
     const history = useHistory();
 
     const handleClose = () => {
-        console.log('Close');
+        history.goBack();
     };
 
     return (
