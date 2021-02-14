@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { auth } from '../firebase';
+import { ReactComponent as Logo } from './logo.svg';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -83,10 +84,13 @@ export default function Login() {
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+          {/* <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
-          </Avatar>
-          <Typography component='h1' variant='h5'>
+          </Avatar> */}
+          <Box>
+          <Logo style={{ width: 600 }} />
+          </Box>
+          <Typography component='h1' variant='h5' style={{ color: '#f8f8f8'}}>
             Log in
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit}>
