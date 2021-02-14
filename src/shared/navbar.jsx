@@ -29,14 +29,11 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
     const classes = useStyles();
     const user = useContext(UserContext);
-    const history = useHistory();
 
     const handleLog = async () => {
         if (user) {
             await auth.signOut();
         }
-        console.log("HERE")
-        history.push('/login');
     }
 
     return (
@@ -48,7 +45,7 @@ export default function ButtonAppBar() {
                     </Box>
                     <Button color="inherit" size="large">Exercises</Button>
                     <Button color="inherit" size="large">Messages</Button>
-                    <Button color="inherit" size="large" onClick={handleLog}>{user ? 'Logout' : 'Login'}</Button>
+                    <Button color="inherit" size="large" onClick={handleLog} href={'/login'}>{user ? 'Logout' : 'Login'}</Button>
                 </Toolbar>
             </AppBar>
         </div>
