@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, MuiThemeProvider, createMuiTheme, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {auth} from "../firebase"; 
 
@@ -28,21 +28,9 @@ function Copyright() {
     );
 }
 
-const background = createMuiTheme({
-    palette: {
-      background: {
-        // default: 'linear-gradient(to top, #3553ae, #6394dd)',
-        // default: '#3553ae',
-        main: '#3553ae',
-        mainGradient: "linear-gradient(to right, #3553ae, #6394dd)",
-      }
-    }
-  });
-  
-
 const useStyles = makeStyles((theme) => ({
     paper: {
-        marginTop: theme.spacing(8),
+        paddingTop: theme.spacing(8),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -60,12 +48,16 @@ const useStyles = makeStyles((theme) => ({
     },
     input: {
         backgroundColor: '#F8F8F8',
+    },
+    background: {
+        height: '100vh',
+        width: '100vw', 
+        backgroundImage: `linear-gradient(to right, #3553ae, #6394dd)`
     }
 }));
 
 export default function Login() {
     const classes = useStyles();
-    const theme = useTheme();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -77,9 +69,8 @@ export default function Login() {
     }
 
     return (
-        <MuiThemeProvider theme={background}>
-           {/* <style>{'body { background: `linear-gradient(to right, #3553ae, #6394dd);`' }</style> */}
-        <Container component="main" maxWidth="xs" style={{ background: theme.palette.background.mainGradient }}>
+    <div className={classes.background}>
+        <Container component="main" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
                 <Avatar className={classes.avatar}>
@@ -142,10 +133,10 @@ export default function Login() {
                     </Button>
                 </form>
             </div>
-            <Box mt={8}>
+            <Box mt={5}>
                 <Copyright />
             </Box>
         </Container>
-    </MuiThemeProvider>
+        </div>
     );
 }
