@@ -30,13 +30,12 @@ export default function ButtonAppBar() {
     const user = useContext(UserContext);
     const history = useHistory();
 
-    const handleLog = () => {
+    const handleLog = async () => {
         if (user) {
-            auth.signOut();
-            window.location.reload();
-        } else {
-            history.push('/login');
+            await auth.signOut();
         }
+        console.log("HERE")
+        history.push('/login');
     }
 
     return (
