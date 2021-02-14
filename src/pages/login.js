@@ -84,9 +84,6 @@ export default function Login() {
       <Container component='main' maxWidth='xs'>
         <CssBaseline />
         <div className={classes.paper}>
-          {/* <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar> */}
           <Box>
           <Logo style={{ width: 600 }} />
           </Box>
