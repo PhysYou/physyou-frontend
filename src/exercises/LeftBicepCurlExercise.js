@@ -1,8 +1,6 @@
-import {getAngle} from "./utils";
+import {getAngle, PartsEnum} from "./utils";
 
-const PartsEnum = {right_shoulder: 12, right_elbow: 14, right_wrist: 16}
-
-export default class RightBicepCurlExercise {
+export default class LeftBicepCurlExercise {
 
     constructor(){
         this.numberOfSteps = 2;
@@ -11,13 +9,13 @@ export default class RightBicepCurlExercise {
     }
 
     perform_exercise(joints) {
-        const right_shoulder = joints[PartsEnum.right_shoulder];
-        const right_elbow = joints[PartsEnum.right_elbow];
-        const right_wrist = joints[PartsEnum.right_wrist];
+        const left_shoulder = joints[PartsEnum.left_shoulder];
+        const left_elbow = joints[PartsEnum.left_elbow];
+        const left_wrist = joints[PartsEnum.left_wrist];
 
-        const angle = getAngle(right_shoulder, right_elbow, right_wrist)
+        const angle = -1*getAngle(left_shoulder, left_elbow, left_wrist)
 
-        if([right_shoulder, right_elbow, right_wrist].filter(item => item.visibility < 0.5).length !== 0){
+        if([left_shoulder, left_elbow, left_wrist].filter(item => item.visibility < 0.2).length !== 0){
             return {currentCount: this.currentCount, feedback: "make sure limbs are visible"};
         }
 
@@ -36,7 +34,6 @@ export default class RightBicepCurlExercise {
                     return {currentCount: this.currentCount, feedback: "Good Job"}
                 } else {
                     return {currentCount: this.currentCount, feedback: "keep moving your hands inwards"}
-
                 }
         }
     }
