@@ -17,6 +17,9 @@ const theme = createMuiTheme({
   },
   typography: {
     fontFamily: 'Nunito, Roboto, "Helvetica Neue", Arial, sans-serif',
+    button: {
+      textTransform: "none"
+    }
   },
 });
 
