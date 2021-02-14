@@ -19,9 +19,9 @@ import { ReactComponent as Logo } from './logo.svg';
 function Copyright() {
   return (
     <Typography variant='body2' style={{ color: '#f8f8f8' }} align='center'>
-      {'Copyright © '}
+      {'copyright © '}
       <Link color='inherit' href='https://material-ui.com/'>
-        Your Website
+        physyou
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -48,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   input: {
-    backgroundColor: '#F8F8F8',
+    backgroundColor: '#ffffff',
+    borderRadius: 2,
   },
   whiteText: {
     color: '#f8f8f8',
@@ -96,7 +97,7 @@ export default function Signup() {
         <div className={classes.paper}>
           <Logo style={{ width: 600 }} />
           <Typography style={{ color: '#f8f8f8' }} component='h1' variant='h5'>
-            Sign up
+            sign up
           </Typography>
           <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <Grid container spacing={2}>
@@ -108,11 +109,11 @@ export default function Signup() {
                   }}
                   autoComplete='fname'
                   name='firstName'
-                  variant='outlined'
+                  variant='filled'
                   required
                   fullWidth
                   id='firstName'
-                  label='First Name'
+                  label='first name'
                   autoFocus
                   onChange={(evt) => setFName(evt.target.value)}
                 />
@@ -123,11 +124,11 @@ export default function Signup() {
                   InputLabelProps={{
                     style: { color: '#6394dd' },
                   }}
-                  variant='outlined'
+                  variant='filled'
                   required
                   fullWidth
                   id='lastName'
-                  label='Last Name'
+                  label='last name'
                   name='lastName'
                   autoComplete='lname'
                   onChange={(evt) => setLName(evt.target.value)}
@@ -136,7 +137,7 @@ export default function Signup() {
               <Grid item xs={12}>
                 <FormControl component='fieldset'>
                   <FormLabel component='legend' className={classes.whiteText}>
-                    Type
+                    type
                   </FormLabel>
                   <RadioGroup
                     aria-label='type'
@@ -148,13 +149,13 @@ export default function Signup() {
                       value='doctor'
                       className={classes.whiteText}
                       control={<Radio color='primary' />}
-                      label='Doctor'
+                      label='doctor'
                     />
                     <FormControlLabel
                       value='patient'
                       className={classes.whiteText}
                       control={<Radio color='primary' />}
-                      label='Patient'
+                      label='patient'
                     />
                   </RadioGroup>
                 </FormControl>
@@ -162,14 +163,14 @@ export default function Signup() {
               <Grid item xs={12}>
                 <TextField
                   className={classes.input}
-                  InputLabelProps={{
+                   InputLabelProps={{
                     style: { color: '#6394dd' },
                   }}
-                  variant='outlined'
+                  variant='filled'
                   required
                   fullWidth
                   id='email'
-                  label='Email Address'
+                  label='email address'
                   name='email'
                   autoComplete='email'
                   onChange={(evt) => setEmail(evt.target.value)}
@@ -178,14 +179,14 @@ export default function Signup() {
               <Grid item xs={12}>
                 <TextField
                   className={classes.input}
-                  InputLabelProps={{
+                   InputLabelProps={{
                     style: { color: '#6394dd' },
                   }}
-                  variant='outlined'
+                  variant='filled'
                   required
                   fullWidth
                   name='password'
-                  label='Password'
+                  label='password'
                   type='password'
                   id='password'
                   autoComplete='current-password'
@@ -211,7 +212,7 @@ export default function Signup() {
                   variant='body2'
                   style={{ color: '#f8f8f8' }}
                 >
-                  Already have an account? Sign in
+                  already have an account? sign in
                 </Link>
               </Grid>
             </Grid>

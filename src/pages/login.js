@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   input: {
-    backgroundColor: '#F8F8F8',
+    backgroundColor: '#ffffff',
+    borderRadius: 2,
   },
   whiteText: {
     color: '#f8f8f8',
@@ -51,9 +52,9 @@ const useStyles = makeStyles((theme) => ({
 function Copyright() {
   return (
     <Typography variant='body2' style={{ color: '#f8f8f8' }} align='center'>
-      {'Copyright © '}
+      {'copyright © '}
       <Link color='inherit' href='#'>
-        PhysYou
+        physyou
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -82,36 +83,36 @@ export default function Login() {
           <Logo style={{ width: 600 }} />
           </Box>
           <Typography component='h1' variant='h5' style={{ color: '#f8f8f8'}}>
-            Log in
+            log in
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit}>
             <TextField
+              className={classes.input}
               InputLabelProps={{
                 style: { color: '#6394dd' },
               }}
-              className={classes.input}
-              variant='outlined'
+              variant='filled'
               margin='normal'
               required
               fullWidth
               id='email'
-              label='Email Address'
+              label='email address'
               name='email'
               autoComplete='email'
               autoFocus
               onChange={(evt) => setEmail(evt.target.value)}
             />
             <TextField
+              className={classes.input}
               InputLabelProps={{
                 style: { color: '#6394dd' },
               }}
-              className={classes.input}
-              variant='outlined'
+              variant='filled'
               margin='normal'
               required
               fullWidth
               name='password'
-              label='Password'
+              label='password'
               type='password'
               id='password'
               autoComplete='current-password'
@@ -128,7 +129,7 @@ export default function Login() {
             </Button>
             <Box textAlign='center'>
               <Link href='#' variant='subtitle1' className={classes.whiteText}>
-                Forgot password?
+                forgot password?
               </Link>
             </Box>
             <Box mt={3}>
@@ -139,7 +140,7 @@ export default function Login() {
                 variant='contained'
                 className={classes.registerBtn}
                 >
-                Sign up
+                sign up
                 </Button>
             </Box>
           </form>
